@@ -1,0 +1,151 @@
+{
+	"info": {
+		"_postman_id": "c9572146-22eb-4dcc-9cf2-f37fa1b8ea15",
+		"name": "Дипломный проект",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "30318873"
+	},
+	"item": [
+		{
+			"name": "http://127.0.0.1:8000/login/",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "phone",
+							"value": "+79521234567",
+							"type": "text"
+						}
+					]
+				},
+				"url": "http://127.0.0.1:8000/login/"
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8000/verify/4",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "phone",
+							"value": "+79521234567",
+							"type": "text"
+						},
+						{
+							"key": "token",
+							"value": "9869",
+							"type": "text"
+						}
+					]
+				},
+				"url": "http://127.0.0.1:8000/verify/4"
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8000/profile/",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token eb79b31296ae232e90df0f464d3c92468f9f70e2",
+						"type": "text"
+					}
+				],
+				"url": "http://127.0.0.1:8000/profile/"
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8000/login/",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "phone",
+							"value": "+79513214433",
+							"type": "text"
+						}
+					]
+				},
+				"url": "http://127.0.0.1:8000/login/"
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8000/verify/5",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "phone",
+							"value": "+79513214433",
+							"type": "text"
+						},
+						{
+							"key": "token",
+							"value": "9869",
+							"type": "text"
+						}
+					]
+				},
+				"url": "http://127.0.0.1:8000/verify/5"
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8000/profile/",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token 3a80f5526e59c66e77de61a26171b498c1eaa9be",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "else_referral_code",
+							"value": "4Klzci",
+							"type": "text"
+						}
+					]
+				},
+				"url": "http://127.0.0.1:8000/profile/"
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8000/profile/",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token eb79b31296ae232e90df0f464d3c92468f9f70e2",
+						"type": "text"
+					}
+				],
+				"url": "http://127.0.0.1:8000/profile/"
+			},
+			"response": []
+		}
+	]
+}
