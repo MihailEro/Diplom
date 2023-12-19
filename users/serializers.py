@@ -4,7 +4,7 @@ from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 from users.models import User, CallbackToken
 from users.services import generate_referral_code
-from users.validators import InviteCodeValidator, TokenAgeValidator
+from users.validators import TokenAgeValidator
 
 
 class LoginSerializer(serializers.ModelSerializer):
@@ -92,12 +92,28 @@ class ProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['id', 'phone', 'other_referral_code', 'entered_referral_code']
-        validators = [
-            InviteCodeValidator(field='else_referal_code')
-        ]
+        fields = ['id', 'phone', 'referral_code', 'other_referral_code', 'else_referral_code', 'entered_referral_code']
 
     def get_entered_referral_code(self, obj: User) -> list:
+        if obj.referral_code:
+            entered_referral_code = User.objects.filter(else_referral_code=obj.referral_code)
+            return [user.phone for user in entered_referral_code]
+        return []
 
-        queryset = User.objects.filter(else_referral_code=obj)
-        return [ProfileForeignSerializer(q).data for q in queryset]
+
+    def is_valid(self, *, raise_exception=False) -> bool:
+
+        else_referral_code = self.initial_data.get('other_referral_code', None)
+        if else_referral_code is not None:
+            if self.instance.else_referral_code is not None:
+                raise serializers.ValidationError('You can activate the invite code only once.')
+            else:
+                try:
+                    else_user = User.objects.get(referral_code=else_referral_code)
+                except User.DoesNotExist:
+                    raise serializers.ValidationError('Incorrect code entered.')
+                else:
+                    self.instance.else_referral_code = else_user
+                    self.instance.save()
+
+        super().is_valid(raise_exception=raise_exception)

@@ -44,9 +44,13 @@ class User(AbstractUser):
 
     username = None
     password = None
-    phone = PhoneNumberField(unique=True)
+    phone = models.CharField(
+        max_length=12,
+        verbose_name='Номер телефона',
+        unique=True
+    )
     referral_code = models.CharField(max_length=6, null=True, default=None)
-    else_referral_code = models.ForeignKey('self', on_delete=models.DO_NOTHING, null=True, default=None)
+    else_referral_code = models.CharField(max_length=6, null=True, default=None)
     is_verified = models.BooleanField(('verified'), default=False)
 
     USERNAME_FIELD = "phone"
