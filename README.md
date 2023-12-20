@@ -26,8 +26,10 @@ env\Scripts\activate
 ```
 pip install -r requirements.txt
 ```
-* Выполнить миграции
+* Создать и выполнить миграции
 ```
+python manage.py makemigrations
+
 python manage.py migrate
 ```
 * Запустить сервер
