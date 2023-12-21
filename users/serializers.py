@@ -13,7 +13,7 @@ class LoginSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        read_only_fields = ("id", )
+        read_only_fields = ("id",)
         fields = ("id", "phone")
 
     def create(self, validated_data: dict) -> User:
@@ -82,7 +82,7 @@ class ProfileForeignSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['phone', ]
+        fields = ['phone']
 
 
 class ProfileSerializer(serializers.ModelSerializer):
@@ -99,7 +99,6 @@ class ProfileSerializer(serializers.ModelSerializer):
             entered_referral_code = User.objects.filter(else_referral_code=obj.referral_code)
             return [user.phone for user in entered_referral_code]
         return []
-
 
     def is_valid(self, *, raise_exception=False) -> bool:
 

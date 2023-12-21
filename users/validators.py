@@ -1,6 +1,5 @@
 from datetime import timezone
-from rest_framework.exceptions import ValidationError
-from users.models import User, CallbackToken
+from users.models import CallbackToken
 from config import settings
 
 
@@ -15,8 +14,7 @@ class TokenAgeValidator:
         try:
             callback_token = CallbackToken.objects.filter(key=token,
                                                           is_active=True).first()
-            seconds = (timezone.now() -
-                       callback_token.created_at).total_seconds()
+            seconds = (timezone.now() - callback_token.created_at).total_seconds()
             if seconds <= settings.TOKEN_EXPIRE_TIME:
                 return True
             else:

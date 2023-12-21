@@ -13,7 +13,7 @@ def generate_numeric_token() -> str:
 
 def generate_referral_code() -> str:
 
-    return get_random_string(length=6, allowed_chars=string.digits+string.ascii_lowercase+string.ascii_uppercase)
+    return get_random_string(length=6, allowed_chars=string.digits + string.ascii_lowercase + string.ascii_uppercase)
 
 
 def send_sms_with_callback_token(user, callback_token, **kwargs) -> None:
